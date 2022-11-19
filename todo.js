@@ -14,3 +14,25 @@ function deleteTask (taskId) {}
 function addTask (task) {}
 
 function showNotification(text) {}
+
+// Exeption handler 
+function handleInputKeypress (e){ 
+    if (e.key == 'Enter') {
+        const text = e.taget.value; 
+        console.log('text', text);
+        if (!text) { 
+            showNotification('Task text can be empty');
+            return;
+        }
+
+        const task = {
+            text,
+            id: Date.now().toString(),
+            done:false
+        }
+
+        e.target.value = '';
+        addTask(task);
+    }
+}
+addTaskInput.addEventListener('keyup',handleInputKeypress);
