@@ -5,12 +5,31 @@ const tasksCounter = document.getElementById("tasks-counter");
 
 console.log("Working");
 
+// throught api data fetching
+function fetchTodos(){
+    //get request
+    fetch('https://jsonplaceholder.typicode.com/todos') // promise return
+    .then(function(response){
+        console.log(response);
+        return response.json(); // promise return
+    }).then(function(data){
+        // console.log(data);
+
+        tasks = data.slice(0,15);
+        renderList();
+    })
+    .catch(function(error){       // for error
+        console.log('error', error);
+    })
+    
+}
+
 function addTaskToDOM(task){
     const li = document.createElement('li');
 
     li.innerHTML = `
-        <input type="checkbox" id="${task.id}" ${task.done ? 'checked' : ''}  class = "custom-checkbox">
-        <label for="${task.id}">${task.text}</label>
+        <input type="checkbox" id="${task.id}" ${task.completed ? 'checked' : ''}  class = "custom-checkbox">
+        <label for="${task.id}">${task.title}</label>
         <img src="bin.png" class="delete" data-id="${task.id}"/>
     `;
     taskList.append(li);
@@ -30,7 +49,7 @@ function toggleTask(taskId) {
     if (task.length > 0) { 
         const currentTask = task[0];
 
-        currentTask.done = !currentTask.done; 
+        currentTask.completed = !currentTask.completed; 
         renderList();
         showNotification('Task toggled successfully');
         return;
@@ -55,30 +74,30 @@ function addTask(task) {
       tasks.push(task);
       renderList();
       showNotification("Task added successfully");
-      console.log(tasks);
+    //   console.log(tasks);
       return;
     }
 }
 
-function showNotification(text) {
-    alert(text);
+function showNotification(title) {
+    alert(title);
 }
 
 // Exeption handler
 function handleInputKeypress(e) {
 //    console.log(e);
   if (e.key == "Enter") {
-    const text = e.target.value;
-    console.log("text", text);
-    if (!text) {
+    const title = e.target.value;
+    // console.log("text", text);
+    if (!title) {
       showNotification("Task text can be empty");
       return;
     }
 
     const task = {
-      text,
+      title,
       id: Date.now().toString(),
-      done: false,
+      completed: false,
     };
 
     e.target.value ="";
@@ -104,5 +123,6 @@ function startApp()
 {
 addTaskInput.addEventListener("keyup", handleInputKeypress);
 document.addEventListener('click', handleClickListener);
+fetchTodos();
 }
 startApp();
