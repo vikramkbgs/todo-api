@@ -1,4 +1,4 @@
-const tasks = [];
+let tasks = [];
 const taskList = document.getElementById("list");
 const addTaskInput = document.getElementById("add");
 const tasksCounter = document.getElementById("tasks-counter");
@@ -9,7 +9,7 @@ function addTaskToDOM(task){
     const li = document.createElement('li');
 
     li.innerHTML = `
-        <input type="checkbox" id="${task.id}" ${task.done ? 'checked' : ''} data-id="12" class = "custom-checkbox">
+        <input type="checkbox" id="${task.id}" ${task.done ? 'checked' : ''}  class = "custom-checkbox">
         <label for="${task.id}">${task.text}</label>
         <img src="bin.png" class="delete" data-id="${task.id}"/>
     `;
@@ -41,12 +41,13 @@ showNotification('Could not toggle the task');
 
 function deleteTask(taskId) {
     const newTask = tasks.filter(function(task){
-        return tasks.id !== taskId;
+        return task.id !== taskId;
     });
 
     tasks = newTask;
     renderList();
-    showNotification('Task is deleted');
+    showNotification('Task is deleted succesfully');
+    return;
 }
 
 function addTask(task) {
@@ -88,7 +89,7 @@ function handleInputKeypress(e) {
 function handleClickListener(e){
     const target = e.target;
 
-    if(target.className == delete){
+    if(target.className == 'delete'){
         const taskId = target.dataset.id;
         deleteTask(taskId);
         return;
@@ -98,7 +99,6 @@ function handleClickListener(e){
         toggleTask(taskId);
         return;
     }
-
 }
 function startApp()
 {
