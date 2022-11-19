@@ -1,5 +1,5 @@
 // iff function variable protection and security improvement
-(function (){
+var AppTodoList = (function (){
     let tasks = [];
     const taskList = document.getElementById("list");
     const addTaskInput = document.getElementById("add");
@@ -134,9 +134,10 @@
     function startApp() {
       addTaskInput.addEventListener("keyup", handleInputKeypress);
       document.addEventListener("click", handleClickListener);
+      fetchTodos();
     }
     startApp();
-    fetchTodos();
+    
 
     }
 )();
