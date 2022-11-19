@@ -117,7 +117,7 @@ function handleClickListener(e){
     const target = e.target;
 
     if(target.className == 'delete'){
-        const taskId = target.dataset.id;
+        const taskId = parseInt(target.dataset.id);
         deleteTask(taskId);
         return;
     }
