@@ -16,9 +16,10 @@ function addTask (task) {}
 function showNotification(text) {}
 
 // Exeption handler 
-function handleInputKeypress (e){ 
+function handleInputKeypress (e){
+    //  console.log(e); 
     if (e.key == 'Enter') {
-        const text = e.taget.value; 
+        const text = e.target.value; 
         console.log('text', text);
         if (!text) { 
             showNotification('Task text can be empty');
