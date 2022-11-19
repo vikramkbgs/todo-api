@@ -6,22 +6,30 @@ const tasksCounter = document.getElementById("tasks-counter");
 console.log("Working");
 
 // throught api data fetching
-function fetchTodos(){
+ async function fetchTodos(){
     //get request
-    fetch('https://jsonplaceholder.typicode.com/todos') // promise return
-    .then(function(response){
-        console.log(response);
-        return response.json(); // promise return
-    }).then(function(data){
-        // console.log(data);
+    // fetch('https://jsonplaceholder.typicode.com/todos') // promise return
+    // .then(function(response){
+    //     console.log(response);
+    //     return response.json(); // promise return
+    // }).then(function(data){
+    //     // console.log(data);
 
-        tasks = data.slice(0,15);
-        renderList();
-    })
-    .catch(function(error){       // for error
-        console.log('error', error);
-    })
-    
+    //     tasks = data.slice(0,15);
+    //     renderList();
+    // })
+    // .catch(function(error){       // for error
+    //     console.log('error', error);
+    // })
+    try{ 
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+    const data = await response.json();
+    tasks = data.slice(0, 7);
+    renderList();
+    }
+    catch(error){
+        console.log(error);
+    }
 }
 
 function addTaskToDOM(task){
@@ -123,6 +131,6 @@ function startApp()
 {
 addTaskInput.addEventListener("keyup", handleInputKeypress);
 document.addEventListener('click', handleClickListener);
-fetchTodos();
 }
 startApp();
+fetchTodos();
