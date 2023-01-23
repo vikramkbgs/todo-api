@@ -19,10 +19,6 @@ The "todo-api" project is a simple to-do list application that allows users to a
 
 - Persistence of data across browser sessions using LocalStorage
 
-## Contributors
-
-- [Your Name](https://github.com/username)
-
 ## Contribute
 
 If you would like to contribute to this project, please fork the repository and make your changes. Once you have made your changes, please create a pull request and I will review and merge your changes.
