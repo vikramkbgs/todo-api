@@ -26,6 +26,7 @@ If you would like to contribute to this project, please fork the repository and 
 ## Screenshot
 
 ![image of todo-api](todo_img.PNG)
+
 ![image of todo-api](todo_api.gif)
 
 ## Live Version
