@@ -23,9 +23,10 @@ The "todo-api" project is a simple to-do list application that allows users to a
 
 If you would like to contribute to this project, please fork the repository and make your changes. Once you have made your changes, please create a pull request and I will review and merge your changes.
 
-## Screenshopt
+## Screenshot
 
 ![image of todo-api](todo_img.PNG)
+![image of todo-api](todo_api.gif)
 
 ## Live Version
 
